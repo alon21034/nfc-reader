@@ -235,9 +235,9 @@ main(int argc, const char *argv[])
   }
 
   int t = 0;
-  // if (transmit_message(pnd, &nt, message) <= 0) {
+  if (transmit_message(pnd, &nt, message) <= 0) {
 
-  // }  
+  }  
 
   nfc_close(pnd);
   nfc_exit(context);
