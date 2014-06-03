@@ -218,21 +218,6 @@ int select_target(nfc_device *pnd, nfc_target *pnt) {
 }
 
 int select_application(nfc_device *pnd, nfc_target *pnt) {
-	// abtCommand[0] = 0x00;
-	// abtCommand[1] = 0xa4;
-	// abtCommand[2] = 0x04;
-	// abtCommand[3] = 0x00;
-	// abtCommand[4] = 0x07;
-	// abtCommand[5] = 0xf0;
-	// abtCommand[6] = 0x01;
-	// abtCommand[7] = 0x02;
-	// abtCommand[8] = 0x03;
-	// abtCommand[9] = 0x04;
-	// abtCommand[10] = 0x05;
-	// abtCommand[11] = 0x06;
-	// abtCommand[12] = 0x00;
-	// abtCommand[13] = 0xd8;
-	// abtCommand[14] = 0xa1;
 
 	abtCommand[0] = 0xe0;
 	abtCommand[1] = 0x80;
@@ -264,7 +249,7 @@ int select_application(nfc_device *pnd, nfc_target *pnt) {
 }
 
 int transmit_message(nfc_device *pnd, nfc_target *pnt, uint8_t message[]) {
-	transmit_bytes(pnd, message, 3);
+	transmit_bytes(pnd, abtMessage, 24);
 
 	return 1;
 }
