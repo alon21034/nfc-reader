@@ -249,7 +249,8 @@ int select_application(nfc_device *pnd, nfc_target *pnt) {
 }
 
 int transmit_message(nfc_device *pnd, nfc_target *pnt, uint8_t message[]) {
-	transmit_bytes(pnd, abtMessage, 24);
+	iso14443a_crc_append(message, 3);
+	transmit_bytes(pnd, message, 5);
 
 	return 1;
 }

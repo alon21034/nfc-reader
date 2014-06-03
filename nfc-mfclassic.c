@@ -224,7 +224,7 @@ main(int argc, const char *argv[])
   //   printf("Warning: tag is probably not a MFC!\n");
   // }
 
-  uint8_t message[3];
+  uint8_t message[5];
   int i = 0;
   for (i = 0 ; i < 3 ; i++) {
     message[i] = rand() & 0xff;
