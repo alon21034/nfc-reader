@@ -224,31 +224,20 @@ main(int argc, const char *argv[])
   //   printf("Warning: tag is probably not a MFC!\n");
   // }
 
-  // if (select_application(pnd, &nt) <= 0) {
+  uint8_t message[3];
+  int i = 0;
+  for (i = 0 ; i < 3 ; i++) {
+    message[i] = rand() & 0xff;
+  }
 
-  // }
+  if (select_application(pnd, &nt) <= 0) {
 
-//   printf("Found MIFARE Classic card:\n");
-//   nt.nm = nmMifare;
-//   print_nfc_target(&nt, false);
+  }
 
-// // Guessing size
-//   if ((nt.nti.nai.abtAtqa[1] & 0x02) == 0x02)
-// // 4K
-//     uiBlocks = 0xff;
-//   else if ((nt.nti.nai.btSak & 0x01) == 0x01)
-// // 320b
-//     uiBlocks = 0x13;
-//   else
-// // 1K/2K, checked through RATS
-//     uiBlocks = 0x3f;
+  int t = 0;
+  // if (transmit_message(pnd, &nt, message) <= 0) {
 
-//   printf("Guessing size: seems to be a %i-byte card\n", (uiBlocks + 1) * 16);
-
-//     if (read_card()) {
-// 	  printf("Done, %d blocks read.\n", uiBlocks + 1);
-// 	  fflush(stdout);
-//     }
+  // }  
 
   nfc_close(pnd);
   nfc_exit(context);
