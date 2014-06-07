@@ -127,3 +127,24 @@ print_nfc_target(const nfc_target *pnt, bool verbose)
   printf("%s", s);
   nfc_free(s);
 }
+
+uint8_t hex_to_byte(char ch1, char ch2) {
+  uint8_t tmp1, tmp2;
+  if (ch1 >= '0' && ch1 <= '9') {
+    tmp1 = ch1 - '0';
+  } else if (ch1 >= 'a' && ch1 <= 'f') {
+    tmp1 = ch1  - 'a';
+  } else {
+    tmp1 = 0;
+  }
+
+  if (ch2 >= '0' && ch2 <= '9') {
+    tmp2 =  ch2 - '0';
+  } else if (ch2 >= 'a' && ch2 <= 'f') {
+    tmp2 = ch2 - 'a';
+  } else {
+    tmp2 = 0;
+  }
+
+  return (tmp1 << 4) | tmp2;
+}

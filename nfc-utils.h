@@ -101,4 +101,6 @@ void    print_hex_par(const uint8_t *pbtData, const size_t szBits, const uint8_t
 
 void    print_nfc_target(const nfc_target *pnt, bool verbose);
 
+uint8_t hex_to_byte(char ch1, char ch2);
+
 #endif

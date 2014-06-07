@@ -131,7 +131,7 @@ transmit_bytes ( nfc_device *pnd, const uint8_t *pbtTx, const size_t szTx)
   // Transmit the command bytes
   szRx = nfc_initiator_transceive_bytes (pnd, pbtTx, szTx, abtRx, sizeof(abtRx), 0);
   if ( szRx < 0) {
-  	printf("not receive anything. \n");
+  	if (!quiet_output) printf("Received bits: \n");
     return false;
   }
 
@@ -249,8 +249,9 @@ int select_application(nfc_device *pnd, nfc_target *pnt) {
 }
 
 int transmit_message(nfc_device *pnd, nfc_target *pnt, uint8_t message[]) {
-	iso14443a_crc_append(message, 3);
-	transmit_bytes(pnd, message, 5);
+	quiet_output = false;
+	iso14443a_crc_append(message, 62);
+	transmit_bytes(pnd, message, 64);
 
 	return 1;
 }

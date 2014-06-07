@@ -224,11 +224,16 @@ main(int argc, const char *argv[])
   //   printf("Warning: tag is probably not a MFC!\n");
   // }
 
-  uint8_t message[5];
+  if (argc >= 2)
+    printf("%s", argv[1]);
+
+  uint8_t message[64];
+
   int i = 0;
-  for (i = 0 ; i < 3 ; i++) {
-    message[i] = rand() & 0xff;
+  for (i = 0 ; i < 64 ; i+=2) {
+    message[i] = hex_to_byte(argv[1][2*i], argv[1][2*i+1]);
   }
+  message[0] = 0x03;
 
   if (select_application(pnd, &nt) <= 0) {
 
