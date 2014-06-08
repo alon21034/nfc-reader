@@ -5,7 +5,7 @@
 using namespace std;
 
 int main(int argc, char** argv) {
-	cout << "--get signature--" << endl;
+	//cout << "--get signature--" << endl;
 
 	// cout << argc << endl;
 

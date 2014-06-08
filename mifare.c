@@ -69,7 +69,7 @@ static uint8_t abtRxPar[MAX_FRAME_LEN];
 static uint8_t abtUid[4];
 struct Crypto1State *state;
 
-bool    quiet_output = false;
+bool    quiet_output = true;
 bool    plain_output = false;
 
 // ISO14443A Anti-Collision Commands
