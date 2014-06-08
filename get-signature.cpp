@@ -9,7 +9,7 @@ int main(int argc, char** argv) {
 
 	// cout << argc << endl;
 
-	string str1 = "./test ";
+	string str1 = "sudo ./test ";
 	string str2 = " | grep 'Received bits:.*' -o | grep ':.*' -o | grep '[0-9a-f]'";
 	str1.append(argv[1]);
 	str1.append(str2);
