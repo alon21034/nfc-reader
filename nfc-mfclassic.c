@@ -229,8 +229,13 @@ main(int argc, const char *argv[])
 
   uint8_t message[64];
 
+
   int i = 0;
-  for (i = 0 ; i < 64 ; i+=2) {
+  for (i = 0 ; i < 64 ; i++) {
+    message[i] = 0;
+  }
+  
+  for (i = 0 ; i < 64 ; i++) {
     message[i] = hex_to_byte(argv[1][2*i], argv[1][2*i+1]);
   }
   message[0] = 0x03;
@@ -238,7 +243,9 @@ main(int argc, const char *argv[])
   if (select_application(pnd, &nt) <= 0) {
 
   }
-
+  
+  //printf("%s", message);
+  
   int t = 0;
   if (transmit_message(pnd, &nt, message) <= 0) {
 
