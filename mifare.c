@@ -69,7 +69,7 @@ static uint8_t abtRxPar[MAX_FRAME_LEN];
 static uint8_t abtUid[4];
 struct Crypto1State *state;
 
-bool    quiet_output = false;
+bool    quiet_output = true;
 bool    plain_output = false;
 
 // ISO14443A Anti-Collision Commands
@@ -239,11 +239,13 @@ int select_application(nfc_device *pnd, nfc_target *pnt) {
 	abtCommand[10] = 0x04;
 	abtCommand[11] = 0x05;
 	abtCommand[12] = 0x06;
-	abtCommand[13] = 0x00;
+  abtCommand[13] = 0x00;
 	abtCommand[14] = 0xd8;
+	//abtCommand[14] = 0xd8;
 	abtCommand[15] = 0xa1;
 
-	transmit_bytes(pnd, abtCommand, 16);
+  iso14443a_crc_append(&abtCommand[0], 14);
+	transmit_bytes(pnd, &abtCommand[0], 16);
 
 	return 1;
 }

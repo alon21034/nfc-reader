@@ -213,18 +213,22 @@ main(int argc, const char *argv[])
   printf("NFC reader: %s opened\n", nfc_device_get_name(pnd));
 
 // Try to find a MIFARE Classic tag
-if (select_target(pnd, &nt) <= 0) {
-  system("sleep 1");
-if (select_target(pnd, &nt) <= 0) {
-  system("sleep 1");
-  if (select_target(pnd, &nt) <= 0) {
+  int r = 0;
+  while (select_target(pnd, &nt) <= 0 && r < 100) {
+    //printf("Error: no tag was found\n");
+    //nfc_close(pnd);
+    //nfc_exit(context);
+    //exit(EXIT_FAILURE);
+    system("sleep 0.3");
+    r++;
+  }
+
+  if (r == 100) {
     printf("Error: no tag was found\n");
     nfc_close(pnd);
     nfc_exit(context);
     exit(EXIT_FAILURE);
   }
-}
-}
 // Test if we are dealing with a MIFARE compatible tag
   // if ((nt.nti.nai.btSak & 0x08) == 0) {
   //   printf("Warning: tag is probably not a MFC!\n");
