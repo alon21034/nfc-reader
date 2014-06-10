@@ -182,12 +182,12 @@ main(int argc, const char *argv[])
   };
 
 // Let the reader only try once to find a tag
-  if (nfc_device_set_property_bool(pnd, NP_INFINITE_SELECT, false) < 0) {
+  /*if (nfc_device_set_property_bool(pnd, NP_INFINITE_SELECT, false) < 0) {
     nfc_perror(pnd, "nfc_device_set_property_bool");
     nfc_close(pnd);
     nfc_exit(context);
     exit(EXIT_FAILURE);
-  }
+  }*/
 // Disable ISO14443-4 switching in order to read devices that emulate Mifare Classic with ISO14443-4 compliance.
   if (nfc_device_set_property_bool(pnd, NP_AUTO_ISO14443_4, false) < 0) {
     nfc_perror(pnd, "nfc_device_set_property_bool");
@@ -213,12 +213,18 @@ main(int argc, const char *argv[])
   printf("NFC reader: %s opened\n", nfc_device_get_name(pnd));
 
 // Try to find a MIFARE Classic tag
+if (select_target(pnd, &nt) <= 0) {
+  system("sleep 1");
+if (select_target(pnd, &nt) <= 0) {
+  system("sleep 1");
   if (select_target(pnd, &nt) <= 0) {
     printf("Error: no tag was found\n");
     nfc_close(pnd);
     nfc_exit(context);
     exit(EXIT_FAILURE);
   }
+}
+}
 // Test if we are dealing with a MIFARE compatible tag
   // if ((nt.nti.nai.btSak & 0x08) == 0) {
   //   printf("Warning: tag is probably not a MFC!\n");
@@ -247,6 +253,11 @@ main(int argc, const char *argv[])
   //printf("%s", message);
   
   int t = 0;
+  //if (transmit_message(pnd, &nt, message) <= 0) {
+
+  //}  
+
+  //int t = 0;
   if (transmit_message(pnd, &nt, message) <= 0) {
 
   }  

@@ -133,7 +133,7 @@ uint8_t hex_to_byte(char ch1, char ch2) {
   if (ch1 >= '0' && ch1 <= '9') {
     tmp1 = ch1 - '0';
   } else if (ch1 >= 'a' && ch1 <= 'f') {
-    tmp1 = ch1  - 'a';
+    tmp1 = ch1  - 'a' + 10;
   } else {
     tmp1 = 0;
   }
@@ -141,7 +141,7 @@ uint8_t hex_to_byte(char ch1, char ch2) {
   if (ch2 >= '0' && ch2 <= '9') {
     tmp2 =  ch2 - '0';
   } else if (ch2 >= 'a' && ch2 <= 'f') {
-    tmp2 = ch2 - 'a';
+    tmp2 = ch2 - 'a' + 10;
   } else {
     tmp2 = 0;
   }
