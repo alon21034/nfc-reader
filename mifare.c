@@ -189,6 +189,7 @@ void encrypt( struct Crypto1State* s, uint8_t* pbtTx, uint8_t* pbtTxPar, const s
 
 int select_target(nfc_device *pnd, nfc_target *pnt) {
 	  // Send the 7 bits request command specified in ISO 14443A (0x26)
+	//quiet_output = false;
 	  if (!transmit_bits ( pnd, abtReqa, NULL, 7)) {
 	    printf ("Error: No tag available\n");
 	    return -1;
@@ -218,7 +219,7 @@ int select_target(nfc_device *pnd, nfc_target *pnt) {
 }
 
 int select_application(nfc_device *pnd, nfc_target *pnt) {
-
+	//quiet_output = false;
 	abtCommand[0] = 0xe0;
 	abtCommand[1] = 0x80;
 	abtCommand[2] = 0x31;
@@ -239,12 +240,12 @@ int select_application(nfc_device *pnd, nfc_target *pnt) {
 	abtCommand[10] = 0x04;
 	abtCommand[11] = 0x05;
 	abtCommand[12] = 0x06;
-  abtCommand[13] = 0x00;
+  	abtCommand[13] = 0x00;
 	abtCommand[14] = 0xd8;
 	//abtCommand[14] = 0xd8;
 	abtCommand[15] = 0xa1;
 
-  iso14443a_crc_append(&abtCommand[0], 14);
+  	iso14443a_crc_append(&abtCommand[0], 14);
 	transmit_bytes(pnd, &abtCommand[0], 16);
 
 	return 1;

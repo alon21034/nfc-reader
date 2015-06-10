@@ -42,7 +42,8 @@
 
 #ifdef HAVE_CONFIG_H
 #  include "config.h"
-#endif // HAVE_CONFIG_H
+#endif 
+ //HAVE_CONFIG_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -251,20 +252,20 @@ main(int argc, const char *argv[])
   message[0] = 0x03;
 
   if (select_application(pnd, &nt) <= 0) {
-
-  }
+    //printf("select_application failed\n");
+  } 
   
   //printf("%s", message);
   
   int t = 0;
-  //if (transmit_message(pnd, &nt, message) <= 0) {
-
-  //}  
-
-  //int t = 0;
   if (transmit_message(pnd, &nt, message) <= 0) {
 
   }  
+
+  //int t = 0;
+  //if (transmit_message(pnd, &nt, message) <= 0) {
+
+  //}  
 
   nfc_close(pnd);
   nfc_exit(context);
